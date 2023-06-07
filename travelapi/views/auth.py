@@ -37,8 +37,10 @@ def login_user(request):
             # Bad login details were provided. So we can't log the user in.
             data = { 'valid': False }
             return Response(data, status=status.HTTP_204_NO_CONTENT)
-    except:
-        return Response({}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    except KeyError:
+        return Response({'error': 'Username or password field is missing'}, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
