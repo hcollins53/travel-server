@@ -1,7 +1,13 @@
 from django.db import models
 
 class ActivityItinerary(models.Model):
-    itinerary = models.ForeignKey("Itinerary", on_delete=models.CASCADE, related_name='activity_itinerary')
-    day = models.ForeignKey("Day", on_delete=models.CASCADE)
+    trip = models.ForeignKey("Trip", on_delete=models.CASCADE, related_name='activity_itinerary')
     location = models.ForeignKey("Location", on_delete=models.CASCADE)
     activity = models.ForeignKey("Activity", on_delete=models.CASCADE, related_name='activity_itinerary')
+
+    @property
+    def location_name(self):
+        return f'{self.location.name}'
+    @property
+    def activity_name(self):
+        return f'{self.activity.name}'
