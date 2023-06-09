@@ -58,7 +58,7 @@ class ActivityView(ViewSet):
 class CreateActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
-        fields = ['id', 'name', "location", "cost"]
+        fields = ['id', 'name', "location", "place_id", "rating", "vicinity", "lat", "lng"]
 # class CreateTripActivitySerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = ActivityItinerary
@@ -68,5 +68,5 @@ class ActivitySerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Activity
-        fields = ('id', 'name', "location", "cost", "activity_itinerary")
+        fields = ('id', 'name', "location", "place_id", "rating", "vicinity", "lat", "lng", "activity_itinerary")
         depth = 1

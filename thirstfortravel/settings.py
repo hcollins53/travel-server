@@ -58,10 +58,16 @@ REST_FRAMEWORK = {
 
 # THIS IS NEW
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-    'http://127.0.0.1:3000'
+    "http://localhost:3000",
+    "https://127.0.0.1:3000",
+    "http://www.hannahcollins.com:3000"
 )
-
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://www.hannahcollins.com:3000"
+]
+CORS_ORIGIN_ALLOW_ALL = True
 # UPDATE THIS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,7 +147,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
