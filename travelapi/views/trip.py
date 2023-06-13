@@ -81,7 +81,7 @@ class TripView(ViewSet):
 class CreateTripSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trip
-        fields = ['id', 'name', 'user', 'start_date', "end_date"]
+        fields = ['id', 'name', 'user', 'start_date', "end_date", "image"]
 class TripLocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = TripLocation
@@ -97,5 +97,5 @@ class TripSerializer(serializers.ModelSerializer):
     details = TripActivitySerializer(many=True)
     class Meta:
         model = Trip
-        fields = ('id', 'name', 'start_date', "end_date", "user", "locations", "details")
+        fields = ('id', 'name', 'start_date', "end_date", "user", "locations", "details", "image")
     
