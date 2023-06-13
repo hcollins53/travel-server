@@ -7,3 +7,5 @@ from .day import Day
 from .itineraryactivity import ActivityItinerary
 from .triplocation import TripLocation
 from .packing import Packing
+from .hotel import Hotel
+from .transportation import Travel
