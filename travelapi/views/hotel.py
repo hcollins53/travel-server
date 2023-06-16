@@ -61,7 +61,7 @@ class HotelView(ViewSet):
 class CreateHotelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hotel
-        fields = ['id', 'name', "location", "place_id", "rating", "vicinity", "lat", "lng"]
+        fields = ['id', 'name', "location", "place_id", "rating", "vicinity", "lat", "lng", "trip"]
 # class CreateTripHotelSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = HotelItinerary
@@ -71,5 +71,5 @@ class HotelSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Hotel
-        fields = ('id', 'name', "location", "place_id", "rating", "vicinity", "lat", "lng")
+        fields = ('id', 'name', "location", "place_id", "rating", "vicinity", "lat", "lng", "trip")
         depth = 1

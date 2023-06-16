@@ -7,3 +7,5 @@ from .itinerary import ItineraryView
 from .packing import PackingView
 from .hotel import HotelView
 from .transportation import TransportationView
+from .budget import BudgetView
+from .spending import SpendingView
