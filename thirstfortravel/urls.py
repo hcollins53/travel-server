@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 from rest_framework import routers
-from travelapi.views import login_user, register_user, TripView, LocationView, DayView, ActivityView, ItineraryView, PackingView, HotelView, TransportationView
+from travelapi.views import login_user, register_user, TripView, LocationView, DayView, ActivityView, ItineraryView, PackingView, HotelView, TransportationView, SpendingView, BudgetView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'trips', TripView, 'trip')
@@ -29,6 +29,8 @@ router.register(r'itineraries', ItineraryView, 'itinerary')
 router.register(r'packinglists', PackingView, 'packinglist')
 router.register(r'hotels', HotelView, 'hotel')
 router.register(r'transports', TransportationView, 'transport')
+router.register(r'budgets', BudgetView, 'budget')
+router.register(r'spendings', SpendingView, 'spending')
 urlpatterns = [
     path('admin/', admin.site.urls),
      path('register', register_user),

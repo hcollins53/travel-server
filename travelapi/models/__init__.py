@@ -9,3 +9,5 @@ from .triplocation import TripLocation
 from .packing import Packing
 from .hotel import Hotel
 from .transportation import Travel
+from .budget import Budget
+from .spending import Spending

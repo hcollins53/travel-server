@@ -12,3 +12,6 @@ DELETE FROM travelapi_triplocation WHERE id = 17;
 DELETE FROM travelapi_trip_locations WHERE id = 1;
 DELETE FROM travelapi_trip_locations WHERE id = 15;
 DELETE FROM travelapi_trip_locations WHERE id = 17;
+
+DELETE FROM travelapi_hotel WHERE id < 5;
+DELETE FROM travelapi_trip_locations WHERE id = 5;

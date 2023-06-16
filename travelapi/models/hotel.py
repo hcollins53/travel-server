@@ -10,3 +10,4 @@ class Hotel(models.Model):
     vicinity = models.CharField(max_length=50, default="somewhere")
     lat = models.FloatField(max_length=30, default=40.7128)
     lng = models.FloatField(max_length=30, default=74.0060)
+    trip = models.ForeignKey("Trip", on_delete=models.CASCADE)
