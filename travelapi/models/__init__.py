@@ -11,3 +11,4 @@ from .hotel import Hotel
 from .transportation import Travel
 from .budget import Budget
 from .spending import Spending
+from .expenses import TripExpenses

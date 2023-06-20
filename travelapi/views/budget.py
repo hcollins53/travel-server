@@ -2,8 +2,9 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from travelapi.models import Budget, Trip, Spending
-
+from travelapi.models import Budget, Trip, Spending, TripExpenses
+from rest_framework.decorators import action
+from django.db.models import Count, Q
 
 class BudgetView(ViewSet):
     """Level up tags view"""
@@ -28,6 +29,7 @@ class BudgetView(ViewSet):
         """
 
         budgets = Budget.objects.all()
+        # .annotate(total_spending=Count('expenses__spending_amount'))
         trip_id = request.query_params.get('trip', None)
         if trip_id is not None:
             budgets = Budget.objects.filter(trip=trip_id)
@@ -46,8 +48,14 @@ class BudgetView(ViewSet):
 
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
-        
+    @action(methods=['post'], detail=True)  
+    def expense(self, request, pk):
+        budget = Budget.objects.get(pk=pk)
+        spending = Spending.objects.get(pk=request.data["spending"])
+        spending_expense = TripExpenses(budget=budget, spending=spending)
+        spending_expense.save()
+        budget.expenses.add(spending_expense)
+        return Response({'message': 'Expense added'}, status=status.HTTP_201_CREATED)    
 
 class CreateBudgetSerializer(serializers.ModelSerializer):
     class Meta:
@@ -57,9 +65,14 @@ class TripSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trip
         fields = ["id", "name"]
+class TripExpensesSerializer(serializers.ModelSerializer):
+    model = TripExpenses
+    fields = ["id", "budget", "spending", "spending_amount"]
 class BudgetSerializer(serializers.ModelSerializer):
     """JSON serializer for Budgets
     """
+    trip = TripSerializer(many=False)
+    expenses = TripExpensesSerializer(many=True)
     class Meta:
         model = Budget
         fields = ('id', "trip", "amount", "expenses")
